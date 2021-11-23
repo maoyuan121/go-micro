@@ -33,7 +33,7 @@ type memoryEvent struct {
 type memorySubscriber struct {
 	id      string
 	topic   string
-	exit    chan bool
+	exit    chan bool // 标识取消订阅
 	handler Handler
 	opts    SubscribeOptions
 }

@@ -13,35 +13,28 @@ type Options struct {
 	Secure bool
 	Codec  codec.Marshaler
 
-	// Handler executed when error happens in broker mesage
-	// processing
+	// broker message 处理中发生错误时执行的处理程序
 	ErrorHandler Handler
 
 	TLSConfig *tls.Config
 	// Registry used for clustering
 	Registry registry.Registry
-	// Other options for implementations of the interface
-	// can be stored in a context
+	// 接口实现的其他选项可以存储在上下文中
 	Context context.Context
 }
 
 type PublishOptions struct {
-	// Other options for implementations of the interface
-	// can be stored in a context
+	// 接口实现的其他选项可以存储在上下文中
 	Context context.Context
 }
 
 type SubscribeOptions struct {
-	// AutoAck defaults to true. When a handler returns
-	// with a nil error the message is acked.
+	// 默认为 true。当 handler 返回 nil error 消息被 acked。
 	AutoAck bool
-	// Subscribers with the same queue name
-	// will create a shared subscription where each
-	// receives a subset of messages.
+	// 具有相同队列名称的订阅者将创建共享订阅，其中每个订阅者都接收消息子集。
 	Queue string
 
-	// Other options for implementations of the interface
-	// can be stored in a context
+	// 接口实现的其他选项可以存储在上下文中
 	Context context.Context
 }
 

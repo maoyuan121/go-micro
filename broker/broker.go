@@ -1,7 +1,7 @@
 // Package broker is an interface used for asynchronous messaging
 package broker
 
-// Broker is an interface used for asynchronous messaging.
+// Broker 是异步消息使用的一个接口
 type Broker interface {
 	Init(...Option) error
 	Options() Options
@@ -13,9 +13,8 @@ type Broker interface {
 	String() string
 }
 
-// Handler is used to process messages via a subscription of a topic.
-// The handler is passed a publication interface which contains the
-// message and optional Ack method to acknowledge receipt of the message.
+// Handler 用于通过订阅主题来处理消息。
+// The handler is passed a publication interface which contains the message and optional Ack method to acknowledge receipt of the message.
 type Handler func(Event) error
 
 type Message struct {
@@ -23,7 +22,7 @@ type Message struct {
 	Body   []byte
 }
 
-// Event is given to a subscription handler for processing
+// Event 交给订阅处理程序进行处理
 type Event interface {
 	Topic() string
 	Message() *Message
