@@ -1,24 +1,24 @@
 # Micro CLI
 
-Micro CLI is the command line interface for developing [Go Micro][1] projects.
+Micro CLI 是用来开发 [Go Micro][1] 的 command line interface。
 
 ## Getting Started
 
-[Download][2] and install **Go**. Version `1.16` or higher is required.
+[Download][2] 并安装 **Go**。版本需要是 `1.16` 或以上。
 
-Installation is done by using the [`go install`][3] command.
+使用 [`go install`][3] 命令安装。
 
 ```bash
 go install go-micro.dev/v4/cmd/micro@master
 ```
 
-Let's create a new service using the `new` command.
+使用 `new` 命令创建一个新的服务。
 
 ```bash
 micro new service helloworld
 ```
 
-Follow the on-screen instructions. Next, we can run the program.
+按照屏幕上的说明操作。接下来，我们可以运行程序。
 
 ```bash
 cd helloworld

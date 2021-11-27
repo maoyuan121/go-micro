@@ -1,12 +1,13 @@
 # HTTP Proxy
 
-This is a http proxy plugin which converts RPC to HTTP request
+这是一个 http 代理插件，它将 RPC 转换为 HTTP 请求
 
 ## Overview
 
-`NewService` returns a new http proxy. It acts as a micro service and proxies to a http backend.
-Routes are dynamically set e.g Foo.Bar routes to /foo/bar. The default backend is http:localhost:9090.
-Optionally specify the backend endpoint url or the router. Also choose to register specific endpoints.
+`NewService` 返回一个新的 http 代理。它充当微服务并代理到 http 后端。
+路由是动态设置的，例如 Foo.Bar路由到 /foo/bar。默认后端是 http:localhost:9090。
+可选地指定后端端点 url 或路由。还可以选择注册特定的端点。
+
 
 ## Usage
 

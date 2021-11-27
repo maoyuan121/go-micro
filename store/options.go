@@ -9,13 +9,12 @@ import (
 
 // Options contains configuration for the Store
 type Options struct {
-	// Nodes contains the addresses or other connection information of the backing storage.
-	// For example, an etcd implementation would contain the nodes of the cluster.
-	// A SQL implementation could contain one or more connection strings.
+	// Nodes 包含备份存储的地址或其他连接信息。
+	// 例如， etcd 实现包含集群节点，SQL 实现包含一个或者多个连接字符串
 	Nodes []string
-	// Database allows multiple isolated stores to be kept in one backend, if supported.
+	// 数据库允许在一个后端保存多个隔离的存储，如果支持的话。
 	Database string
-	// Table is analagous to a table in database backends or a key prefix in KV backends
+	// Table 类似于数据库后端中的表或 KV 后端中的键前缀
 	Table string
 	// Context should contain all implementation specific options, using context.WithValue.
 	Context context.Context
@@ -63,12 +62,12 @@ func WithClient(c client.Client) Option {
 	}
 }
 
-// ReadOptions configures an individual Read operation
+// ReadOptions 配置单独的 Read 操作
 type ReadOptions struct {
 	Database, Table string
-	// Prefix returns all records that are prefixed with key
+	// Prefix 返回所有以 key 作为前缀的记录
 	Prefix bool
-	// Suffix returns all records that have the suffix key
+	// Suffix 返回所有以 key 作为后缀的记录
 	Suffix bool
 	// Limit limits the number of returned records
 	Limit uint
@@ -115,7 +114,7 @@ func ReadOffset(o uint) ReadOption {
 	}
 }
 
-// WriteOptions configures an individual Write operation
+// WriteOptions 配置单独的写操作
 // If Expiry and TTL are set TTL takes precedence
 type WriteOptions struct {
 	Database, Table string
@@ -150,7 +149,7 @@ func WriteTTL(d time.Duration) WriteOption {
 	}
 }
 
-// DeleteOptions configures an individual Delete operation
+// DeleteOptions 配置单独的删除操作
 type DeleteOptions struct {
 	Database, Table string
 }
@@ -166,7 +165,7 @@ func DeleteFrom(database, table string) DeleteOption {
 	}
 }
 
-// ListOptions configures an individual List operation
+// ListOptions 配置单独的 List 操作
 type ListOptions struct {
 	// List from the following
 	Database, Table string

@@ -1,5 +1,6 @@
 // Package store is an interface for distributed data storage.
 // The design document is located at https://github.com/micro/development/blob/master/design/store.md
+// 默认内存存储
 package store
 
 import (

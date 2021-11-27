@@ -1,34 +1,32 @@
 # Heartbeat
 
-A demonstration of using heartbeating with service discovery.
+在服务发现中使用心跳的 demo。
 
 ## Rationale
 
-Services register with service discovery on startup and deregister on shutdown. Sometimes these services may unexpectedly die or 
-be killed forcefully or face transient network issues. In these cases stale nodes will be left in service discovery. It would be 
-ideal if services were automatically removed.
+服务在启动时注册服务发现，在关闭时注销。有时这些服务可能会意外死亡或被强行杀害或面临短暂的网络问题。
+在这些情况下，陈旧的节点将留在服务发现中。这将是如果服务是自动删除的原因。
 
 ## Solution
 
-Micro supports the option of a register TTL and register interval for this exact reason. TTL specifies how long a registration should 
-exist in discovery after which it expires and is removed. Interval is the time at which a service should re-register to preserve 
-it's registration in service discovery.
+出于这个原因，Micro 支持 register TTL 和 register 间隔选项。
+TTL 指定一个注册应该持续多长时间存在于发现中，之后过期并被删除。间隔是服务重新注册以保持其在服务发现中的注册的时间。
 
-These are options made available in go-micro and as flags in the micro toolkit
+这些选项在 go-micro 中可用，在 micro 工具包中作为标志
 
 ## Toolkit
 
-Run any component of the toolkit with the flags like so
+像这样运行工具包的任何组件
 
 ```
 micro --register_ttl=30 --register_interval=15 api
 ```
 
-This example shows that we're setting a ttl of 30 seconds with a re-register interval of 15 seconds.
+这个例子显示我们将 ttl 设置为 30 秒，重新注册间隔为 15 秒。
 
 ## Go Micro
 
-When declaring a micro service you can pass in the options as time.Duration
+在声明微服务时，可以将选项作为 time.Duration 传入。
 
 ```
 service := micro.NewService(

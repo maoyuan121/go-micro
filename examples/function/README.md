@@ -1,11 +1,11 @@
 # Function
 
-This is an example of creating a micro function. A function is a one time executing service.
+这是一个创建 micro function 的例子。function 是一次性执行的服务。
 
 ## Contents
 
-- main.go - is the main definition of the function
-- proto - contains the protobuf definition of the API
+- main.go - 是 function 的 main 定义
+- proto - 包含这个 API 的 protobuf 定义
 
 ## Run function
 

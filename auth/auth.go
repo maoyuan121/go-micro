@@ -23,35 +23,35 @@ var (
 	ErrForbidden = errors.New("resource forbidden")
 )
 
-// Auth provides authentication and authorization
+// Auth 提供身份验证和授权
 type Auth interface {
 	// Init the auth
 	Init(opts ...Option)
 	// Options set for auth
 	Options() Options
-	// Generate a new account
+	// 生成一个新的 account
 	Generate(id string, opts ...GenerateOption) (*Account, error)
-	// Inspect a token
+	// 检查 token
 	Inspect(token string) (*Account, error)
-	// Token generated using refresh token or credentials
+	// 使用刷新令牌或凭据生成的令牌
 	Token(opts ...TokenOption) (*Token, error)
-	// String returns the name of the implementation
+	// 返回实现名
 	String() string
 }
 
-// Rules manages access to resources
+// Rules 管理对资源的访问
 type Rules interface {
-	// Verify an account has access to a resource using the rules
+	// 使用规则验证帐户对资源的访问
 	Verify(acc *Account, res *Resource, opts ...VerifyOption) error
-	// Grant access to a resource
+	// 授予对资源的访问权限
 	Grant(rule *Rule) error
-	// Revoke access to a resource
+	// 取消对资源的访问
 	Revoke(rule *Rule) error
-	// List returns all the rules used to verify requests
+	// List 返回用于验证请求的所有规则
 	List(...ListOption) ([]*Rule, error)
 }
 
-// Account provided by an auth provider
+// 由认证提供者提供的 Account
 type Account struct {
 	// ID of the account e.g. email
 	ID string `json:"id"`
@@ -67,15 +67,15 @@ type Account struct {
 	Secret string `json:"secret"`
 }
 
-// Token can be short or long lived
+// Token 的生命周期可长可短
 type Token struct {
-	// The token to be used for accessing resources
+	// 用于访问资源的 token
 	AccessToken string `json:"access_token"`
-	// RefreshToken to be used to generate a new token
+	// 用于生成一个新的 token
 	RefreshToken string `json:"refresh_token"`
-	// Time of token creation
+	// token 的创建时间
 	Created time.Time `json:"created"`
-	// Time of token expiry
+	// token 的过期时间
 	Expiry time.Time `json:"expiry"`
 }
 
@@ -94,7 +94,7 @@ type Resource struct {
 	Endpoint string `json:"endpoint"`
 }
 
-// Access defines the type of access a rule grants
+// Access 定义规则授予的访问类型
 type Access int
 
 const (
@@ -104,19 +104,17 @@ const (
 	AccessDenied
 )
 
-// Rule is used to verify access to a resource
+// Rule 用于验证对资源的访问
 type Rule struct {
 	// ID of the rule, e.g. "public"
 	ID string
-	// Scope the rule requires, a blank scope indicates open to the public and * indicates the rule
-	// applies to any valid account
+	// 规则要求的范围，空白范围表示对公众开放，* 表示规则适用于任何有效帐户
 	Scope string
-	// Resource the rule applies to
+	// 规则应用于的资源
 	Resource *Resource
-	// Access determines if the rule grants or denies access to the resource
+	// Access 决定规则是否授予或拒绝对资源的访问
 	Access Access
-	// Priority the rule should take when verifying a request, the higher the value the sooner the
-	// rule will be applied
+	// 当验证请求时，规则应该采取的优先级，值越高，规则将越快地被应用
 	Priority int32
 }
 

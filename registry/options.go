@@ -24,8 +24,8 @@ type RegisterOptions struct {
 }
 
 type WatchOptions struct {
-	// Specify a service to watch
-	// If blank, the watch is for all services
+	// 指定要监视那个服务
+	// 如果为空的化，监视所有服务
 	Service string
 	// Other options for implementations of the interface
 	// can be stored in a context
@@ -44,7 +44,7 @@ type ListOptions struct {
 	Context context.Context
 }
 
-// Addrs is the registry addresses to use
+// Addrs 是注册中心的地址
 func Addrs(addrs ...string) Option {
 	return func(o *Options) {
 		o.Addrs = addrs
@@ -137,7 +137,7 @@ func getServiceRecords(ctx context.Context) map[string]map[string]*record {
 	return services
 }
 
-// Services is an option that preloads service data
+// Services 是预加载服务数据的选项
 func Services(s map[string][]*Service) Option {
 	return func(o *Options) {
 		if o.Context == nil {

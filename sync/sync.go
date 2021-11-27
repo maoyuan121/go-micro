@@ -1,4 +1,4 @@
-// Package sync is an interface for distributed synchronization
+// Package sync 是分布式同步的接口
 package sync
 
 import (
@@ -10,19 +10,19 @@ var (
 	ErrLockTimeout = errors.New("lock timeout")
 )
 
-// Sync is an interface for distributed synchronization
+// Sync 是分布式同步的接口
 type Sync interface {
 	// Initialise options
 	Init(...Option) error
 	// Return the options
 	Options() Options
-	// Elect a leader
+	// 选 leader
 	Leader(id string, opts ...LeaderOption) (Leader, error)
-	// Lock acquires a lock
+	// 获取锁
 	Lock(id string, opts ...LockOption) error
-	// Unlock releases a lock
+	// 释放锁
 	Unlock(id string) error
-	// Sync implementation
+	// Sync 实现名
 	String() string
 }
 
