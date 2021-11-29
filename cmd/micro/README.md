@@ -32,12 +32,11 @@ Finally we can call the service.
 micro call helloworld Helloworld.Call '{"name": "John"}'
 ```
 
-That's all you need to know to get started. Refer to the [Go Micro][1]
-documentation for more info on developing services.
+这就是你开始所需要知道的一切。有关开发服务的更多信息，请参考 [Go Micro][1] 文档。
 
-## Dependencies
+## 依赖
 
-You will need protoc-gen-micro for code generation
+你需要 protoc-gen-micro 用来生成代码
 
 * [protobuf][4]
 * [protoc-gen-go][5]
@@ -53,7 +52,7 @@ go install go-micro.dev/v4/cmd/protoc-gen-micro@latest
 
 ## Creating A Service
 
-To create a new service, use the `micro new service` command.
+使用 `micro new service` 命令创建一个新的服务。
 
 ```bash
 $ micro new service helloworld
@@ -75,8 +74,7 @@ cd helloworld
 make proto tidy
 ```
 
-To create a new function, use the `micro new function` command. Functions differ
-from services in that they exit after returning.
+使用 `micro new function` 命令创建一个新的 fucntion。Functin 和 services 不同的是运行后就退出了。
 
 ```bash
 $ micro new function helloworld
@@ -100,16 +98,15 @@ make proto tidy
 
 ### Jaeger
 
-To create a new service with [Jaeger][7] integration, pass the `--jaeger` flag
-to the `micro new service` or `micro new function` commands. You may configure
-the Jaeger client using [environment variables][8].
+要创建一个集成了 [Jaeger][7] 的服务，需要在使用 `micro new service` 或 `micro new function` 的时候传入 `--jaeger` flag.
+你也可以使用 [environment variables][8] 配置 Jaeger 客户端。
 
 ```bash
 micro new service --jaeger helloworld
 ```
 
-You may invoke `trace.NewSpan(context.Context).Finish()` to nest spans. For
-example, consider the following handler implementing a greeter.
+你可以调用 `trace.NewSpan(context.Context).Finish()` 来嵌套 span。
+例如，考虑下面的处理程序实现一个问候程序。
 
 `handler/helloworld.go`
 
@@ -154,8 +151,7 @@ func Greet(ctx context.Context, name string) string {
 
 ### Skaffold
 
-To create a new service with [Skaffold][9] files, pass the `--skaffold` flag to
-the `micro new service` or `micro new function` commands.
+要创建一个集成了 [Skaffold][9] 文件的服务，需要在使用 `micro new service` 或 `micro new function` 的时候传入 `--skaffold` flag.
 
 ```bash
 micro new service --skaffold helloworld
@@ -163,8 +159,7 @@ micro new service --skaffold helloworld
 
 ## Running A Service
 
-To run a service, use the `micro run` command to build and run your service
-continuously.
+要运行一个服务，使用 `micro run` 命令来 build 和运行你的服务。
 
 ```bash
 $ micro run
@@ -176,8 +171,7 @@ $ micro run
 
 ### With Docker
 
-To run a service with Docker, build the Docker image and run the Docker
-container.
+要使用 docker 运行一个服务，构建 docker images 并运行 docker container。
 
 ```bash
 $ make docker
@@ -190,8 +184,7 @@ $ docker run helloworld:latest
 
 ### With Skaffold
 
-When you've created your service using the `--skaffold` flag, you may run the
-Skaffold pipeline using the `skaffold` command.
+当你使用 `--skaffold` flag 创建了一个服务，你可以使用 `skaffold` 命令运行 Skaffold pipeline。
 
 ```bash
 skaffold dev
@@ -199,8 +192,8 @@ skaffold dev
 
 ## Creating A Client
 
-To create a new client, use the `micro new client` command. The name is the
-service you'd like to create a client project for.
+使用 `micro new client` 命令创建一个新的 client。
+该名称是要为其创建客户端项目的服务。
 
 ```bash
 $ micro new client helloworld
@@ -209,8 +202,7 @@ cd helloworld-client
 make tidy
 ```
 
-You may optionally pass the fully qualified package name of the service you'd
-like to create a client project for.
+您可以选择传递要为其创建客户端项目的服务的完全限定包名。
 
 ```bash
 $ micro new client github.com/auditemarlow/helloworld
@@ -221,8 +213,7 @@ make tidy
 
 ## Running A Client
 
-To run a client, use the `micro run` command to build and run your client
-continuously.
+要运行一个 client，使用 `micro run` 命令构建并运行。
 
 ```bash
 $ micro run
@@ -231,9 +222,7 @@ $ micro run
 
 ## Generating Files
 
-To generate Go Micro project template files after the fact, use the `micro
-generate` command. It will place the generated files in the current working
-directory.
+使用 `micro generate` 命令生成 Go Micro 项目模板文件。它将生成的文件放在当前工作目录中。
 
 ```bash
 $ micro generate skaffold
@@ -242,7 +231,7 @@ skaffold project template files generated
 
 ## Listing Services
 
-To list services, use the `micro services` command.
+使用 `micro services` 命令列出服务。
 
 ```bash
 $ micro services
@@ -251,7 +240,7 @@ helloworld
 
 ## Describing A Service
 
-To describe a service, use the `micro describe service` command.
+使用 `micro describe service` 命令描述服务。
 
 ```bash
 $ micro describe service helloworld
@@ -302,7 +291,7 @@ $ micro describe service helloworld
 }
 ```
 
-You may pass the `--format=yaml` flag to output a YAML formatted object.
+可以传入 `--format=yaml` flag 用来输出 YAML 格式对象。
 
 ```bash
 $ micro describe service --format=yaml helloworld
@@ -338,16 +327,15 @@ nodes:
 
 ## Calling A Service
 
-To call a service, use the `micro call` command. This will send a single request
-and expect a single response.
+使用 `micro call` 命令调用一个服务。这将发送一个请求并期望得到一个响应。
 
 ```bash
 $ micro call helloworld Helloworld.Call '{"name": "John"}'
 {"msg":"Hello John"}
 ```
 
-To call a service's server stream, use the `micro stream server` command. This
-will send a single request and expect a stream of responses.
+要调用服务的服务器流，使用 `micro stream server` 命令。
+这将发送一个请求并等待一个响应流。
 
 ```bash
 $ micro stream server helloworld Helloworld.ServerStream '{"count": 10}'
@@ -363,8 +351,7 @@ $ micro stream server helloworld Helloworld.ServerStream '{"count": 10}'
 {"count":9}
 ```
 
-To call a service's bidirectional stream, use the `micro stream bidi` command.
-This will send a stream of requests and expect a stream of responses.
+要调用服务的双向流，使用 `micro stream bidi` 命令。这将发送一个请求流并期待一个响应流。
 
 ```bash
 $ micro stream bidi helloworld Helloworld.BidiStream '{"stroke": 1}' '{"stroke": 2}' '{"stroke": 3}'

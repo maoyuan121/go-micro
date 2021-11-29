@@ -8,18 +8,18 @@ import (
 type Level int8
 
 const (
-	// TraceLevel level. Designates finer-grained informational events than the Debug.
+	// TraceLevel level. 指定比 Debug 更细粒度的信息事件。
 	TraceLevel Level = iota - 2
-	// DebugLevel level. Usually only enabled when debugging. Very verbose logging.
+	// DebugLevel level. 通常只在调试时启用。非常详细的日志记录。
 	DebugLevel
-	// InfoLevel is the default logging priority.
-	// General operational entries about what's going on inside the application.
+	// InfoLevel 默认的日志记录优先级
+	// 关于应用程序内部运行情况的一般操作条目。
 	InfoLevel
-	// WarnLevel level. Non-critical entries that deserve eyes.
+	// WarnLevel level. 值得关注的非关键条目。
 	WarnLevel
-	// ErrorLevel level. Logs. Used for errors that should definitely be noted.
+	// ErrorLevel level. Logs. 用于一定要注意的错误。
 	ErrorLevel
-	// FatalLevel level. Logs and then calls `logger.Exit(1)`. highest level of severity.
+	// FatalLevel level. 记录日志，然后调用 `logger.Exit(1)`。严重程度最高。
 	FatalLevel
 )
 
