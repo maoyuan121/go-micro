@@ -4,7 +4,8 @@ The cli source reads config from parsed flags via a cli.Context.
 
 ## Format
 
-We expect the use of the `urfave/cli` package. Upper case flags will be lower cased. Dashes will be used as delimiters for nesting.
+We expect the use of the `urfave/cli` package. Upper case flags will be lower cased.
+Dashes will be used as delimiters for nesting.
 
 ### Example
 
@@ -36,7 +37,8 @@ Becomes
 
 ## New and Load Source
 
-Because a cli.Context is needed to retrieve the flags and their values, it is recommended to build your source from within a cli.Action.
+Because a cli.Context is needed to retrieve the flags and their values,
+it is recommended to build your source from within a cli.Action.
 
 ```go
 
