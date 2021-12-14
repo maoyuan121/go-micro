@@ -1,29 +1,27 @@
 # Config [![GoDoc](https://godoc.org/github.com/micro/go-micro/config?status.svg)](https://godoc.org/github.com/micro/go-micro/config)
 
-Config is a pluggable dynamic config package
 
-Most config in applications are statically configured or include complex logic to load from multiple sources. 
-Go Config makes this easy, pluggable and mergeable. You'll never have to deal with config in the same way again.
+Config 是一个可插拔的动态配置包
 
-## Features
+应用程序中的大多数配置都是静态配置的，或者包含从多个源加载的复杂逻辑。
+Go Config 让这变得简单、可插拔和可合并。你再也不用以同样的方式处理配置了。
 
-- **Dynamic Loading** - Load configuration from multiple source as and when needed. Go Config manages watching config sources 
-in the background and automatically merges and updates an in memory view. 
 
-- **Pluggable Sources** - Choose from any number of sources to load and merge config. The backend source is abstracted away into 
-a standard format consumed internally and decoded via encoders. Sources can be env vars, flags, file, etcd, k8s configmap, etc.
 
-- **Mergeable Config** - If you specify multiple sources of config, regardless of format, they will be merged and presented in 
-a single view. This massively simplifies priority order loading and changes based on environment.
 
-- **Observe Changes** - Optionally watch the config for changes to specific values. Hot reload your app using Go Config's watcher. 
-You don't have to handle ad-hoc hup reloading or whatever else, just keep reading the config and watch for changes if you need 
-to be notified.
+## 特性
 
-- **Sane Defaults** - In case config loads badly or is completely wiped away for some unknown reason, you can specify fallback 
-values when accessing any config values directly. This ensures you'll always be reading some sane default in the event of a problem.
+- **Dynamic Loading** - 当需要时，从多个源加载配置。Go Config 在后台管理监视配置源，并自动合并和更新内存视图。
+
+- **Pluggable Sources** - 从任意数量的源中选择加载和合并配置。后端源被抽象为一种内部使用并通过编码器解码的标准格式。源可以是 env var、flags、file、etcd、k8s configmap 等。
+
+- **Mergeable Config** - 如果您指定多个配置源，无论格式如何，它们都将被合并并呈现在一个视图。这大大简化了基于环境的优先级顺序加载和更改。
+
+- **Observe Changes** - 可以选择观察配置，以查看对特定值的更改。使用 Go Config 的监视器热加载你的应用程序。您不需要处理 ad-hoc hup 重载或其他任何事情，
+只要继续阅读配置并在需要时观察更改即可得到通知。
+
+- **Sane Defaults** - 如果配置加载不良或由于某些未知原因被完全删除，您可以指定 fallback 值，直接访问任何配置值。这确保在出现问题时，您总是能够读取一些合理的默认值。
 
 ## Getting Started
 
-For detailed information or architecture, installation and general usage see the [docs](https://micro.mu/docs/go-config.html)
-
+有关详细信息或架构、安装和一般用法，请参见[docs](https://micro.mu/docs/go-config.html)

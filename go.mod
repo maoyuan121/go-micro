@@ -1,6 +1,6 @@
 module go-micro.dev/v4
 
-go 1.17
+go 1.16
 
 require (
 	github.com/HdrHistogram/hdrhistogram-go v1.1.2 // indirect
