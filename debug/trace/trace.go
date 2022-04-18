@@ -1,4 +1,4 @@
-// Package trace provides an interface for distributed tracing
+// trace 包为分布式跟踪提供了一个接口
 package trace
 
 import (
@@ -8,43 +8,43 @@ import (
 	"go-micro.dev/v4/metadata"
 )
 
-// Tracer is an interface for distributed tracing
+// Tracer 是分布式跟踪的一个接口
 type Tracer interface {
-	// Start a trace
+	// 开始跟踪
 	Start(ctx context.Context, name string) (context.Context, *Span)
-	// Finish the trace
+	// 结束追踪
 	Finish(*Span) error
-	// Read the traces
+	// 读取追踪
 	Read(...ReadOption) ([]*Span, error)
 }
 
-// SpanType describe the nature of the trace span
+// SpanType 描述跟踪跨度的性质
 type SpanType int
 
 const (
-	// SpanTypeRequestInbound is a span created when serving a request
+	// SpanTypeRequestInbound 是服务请求时创建的 span
 	SpanTypeRequestInbound SpanType = iota
-	// SpanTypeRequestOutbound is a span created when making a service call
+	// SpanTypeRequestOutbound 在进行服务调用时创建的 span
 	SpanTypeRequestOutbound
 )
 
-// Span is used to record an entry
+// Span 用于记录一个 entry
 type Span struct {
-	// Id of the trace
+	// trace 的 id
 	Trace string
-	// name of the span
+	// span 的名
 	Name string
-	// id of the span
+	// span 的 id
 	Id string
-	// parent span id
+	// 父 span id
 	Parent string
-	// Start time
+	// 开始时间
 	Started time.Time
-	// Duration in nano seconds
+	// Duration 单位纳秒
 	Duration time.Duration
-	// associated data
+	// 关联的数据
 	Metadata map[string]string
-	// Type
+	// 类型
 	Type SpanType
 }
 

@@ -1,10 +1,11 @@
 # Code Generation [Experimental]
 
-We're experimenting with code generation to reduce the amount of boiler plate code written.
+我们正在尝试使用代码生成来减少编写 boiler plate 代码的数量。
 
 ## Example
 
-Going from this
+从
+
 ```golang
 req := client.NewRequest("go.micro.srv.example", "Example.Call", &example.Request{
 	Name: "John",
@@ -17,7 +18,7 @@ if err := client.Call(context.Background(), req, rsp); err != nil {
 }
 ```
 
-To
+到
 
 ```golang
 rsp, err := cl.Call(context.Background(), &example.Request{Name: "John"})

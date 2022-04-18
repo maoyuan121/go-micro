@@ -147,7 +147,7 @@ func (m *memoryStore) list(prefix string, limit, offset uint) []string {
 }
 
 func (m *memoryStore) Close() error {
-	m.store.Flush()
+	m.store.Flush() // Delete all items from the cache.
 	return nil
 }
 

@@ -1,7 +1,7 @@
 // Package stats provides runtime stats
 package stats
 
-// Stats provides stats interface
+// Stats 提供了一个统计接口
 type Stats interface {
 	// Read stat snapshot
 	Read() ([]*Stat, error)
@@ -19,15 +19,15 @@ type Stat struct {
 	Started int64
 	// Uptime in seconds
 	Uptime int64
-	// Memory usage in bytes
+	// 使用了多少内存，单位 byte
 	Memory uint64
 	// Threads aka go routines
 	Threads uint64
 	// Garbage collection in nanoseconds
 	GC uint64
-	// Total requests
+	// 总请求数
 	Requests uint64
-	// Total errors
+	// 总错误数
 	Errors uint64
 }
 

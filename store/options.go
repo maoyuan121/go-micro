@@ -7,7 +7,7 @@ import (
 	"go-micro.dev/v4/client"
 )
 
-// Options contains configuration for the Store
+// Options 包含 Store 的配置信息
 type Options struct {
 	// Nodes 包含备份存储的地址或其他连接信息。
 	// 例如， etcd 实现包含集群节点，SQL 实现包含一个或者多个连接字符串
@@ -22,7 +22,7 @@ type Options struct {
 	Client client.Client
 }
 
-// Option sets values in Options
+// Option 设置 Options 的值
 type Option func(o *Options)
 
 // Nodes contains the addresses or other connection information of the backing storage.

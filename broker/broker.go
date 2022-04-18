@@ -1,4 +1,4 @@
-// Package broker is an interface used for asynchronous messaging
+// broker 包是用于异步通信的一个接口
 package broker
 
 // Broker 是异步消息使用的一个接口
@@ -14,7 +14,7 @@ type Broker interface {
 }
 
 // Handler 用于通过订阅主题来处理消息。
-// The handler is passed a publication interface which contains the message and optional Ack method to acknowledge receipt of the message.
+// 该处理程序被传递一个发布接口，该接口包含消息和可选的Ack方法，用于确认收到消息。
 type Handler func(Event) error
 
 type Message struct {
@@ -30,7 +30,7 @@ type Event interface {
 	Error() error
 }
 
-// Subscriber is a convenience return type for the Subscribe method
+// Subscriber 是 Subscribe方法的一种方便的返回类型
 type Subscriber interface {
 	Options() SubscribeOptions
 	Topic() string

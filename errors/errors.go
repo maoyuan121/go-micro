@@ -1,5 +1,4 @@
-// Package errors provides a way to return detailed information
-// for an RPC request error. The error is normally JSON encoded.
+// errors 包提供了一种返回 RPC 请求错误详细信息的方法。该错误通常是 JSON 编码的。
 package errors
 
 import (
@@ -16,7 +15,7 @@ func (e *Error) Error() string {
 	return string(b)
 }
 
-// New generates a custom error.
+// New 生成一个自定义错误
 func New(id, detail string, code int32) error {
 	return &Error{
 		Id:     id,
@@ -26,8 +25,8 @@ func New(id, detail string, code int32) error {
 	}
 }
 
-// Parse tries to parse a JSON string into an error. If that
-// fails, it will set the given string as the error detail.
+// Parse 试着将一个 JSON 字符串解析成一个 error。
+// 如果失败，它将把给定的字符串设置为错误详细信息。
 func Parse(err string) *Error {
 	e := new(Error)
 	errr := json.Unmarshal([]byte(err), e)
@@ -37,7 +36,7 @@ func Parse(err string) *Error {
 	return e
 }
 
-// BadRequest generates a 400 error.
+// BadRequest 生成一个 400 错误
 func BadRequest(id, format string, a ...interface{}) error {
 	return &Error{
 		Id:     id,
@@ -47,7 +46,7 @@ func BadRequest(id, format string, a ...interface{}) error {
 	}
 }
 
-// Unauthorized generates a 401 error.
+// Unauthorized 生成一个 401 错误
 func Unauthorized(id, format string, a ...interface{}) error {
 	return &Error{
 		Id:     id,
@@ -57,7 +56,7 @@ func Unauthorized(id, format string, a ...interface{}) error {
 	}
 }
 
-// Forbidden generates a 403 error.
+// Forbidden 生成一个 403 错误
 func Forbidden(id, format string, a ...interface{}) error {
 	return &Error{
 		Id:     id,
@@ -67,7 +66,7 @@ func Forbidden(id, format string, a ...interface{}) error {
 	}
 }
 
-// NotFound generates a 404 error.
+// NotFound 生成一个 404 错误
 func NotFound(id, format string, a ...interface{}) error {
 	return &Error{
 		Id:     id,
@@ -77,7 +76,7 @@ func NotFound(id, format string, a ...interface{}) error {
 	}
 }
 
-// MethodNotAllowed generates a 405 error.
+// MethodNotAllowed 生成一个 405 错误
 func MethodNotAllowed(id, format string, a ...interface{}) error {
 	return &Error{
 		Id:     id,
@@ -87,7 +86,7 @@ func MethodNotAllowed(id, format string, a ...interface{}) error {
 	}
 }
 
-// Timeout generates a 408 error.
+// Timeout 生成一个 408 错误
 func Timeout(id, format string, a ...interface{}) error {
 	return &Error{
 		Id:     id,
@@ -97,7 +96,7 @@ func Timeout(id, format string, a ...interface{}) error {
 	}
 }
 
-// Conflict generates a 409 error.
+// Conflict 生成一个 409 错误
 func Conflict(id, format string, a ...interface{}) error {
 	return &Error{
 		Id:     id,
@@ -107,7 +106,7 @@ func Conflict(id, format string, a ...interface{}) error {
 	}
 }
 
-// InternalServerError generates a 500 error.
+// InternalServerError 生成一个 500 错误
 func InternalServerError(id, format string, a ...interface{}) error {
 	return &Error{
 		Id:     id,
@@ -117,7 +116,7 @@ func InternalServerError(id, format string, a ...interface{}) error {
 	}
 }
 
-// Equal tries to compare errors
+// Equal 比较两个错误
 func Equal(err1 error, err2 error) bool {
 	verr1, ok1 := err1.(*Error)
 	verr2, ok2 := err2.(*Error)
@@ -137,7 +136,7 @@ func Equal(err1 error, err2 error) bool {
 	return true
 }
 
-// FromError try to convert go error to *Error
+// FromError 试着将 go error 转换围殴 *Error
 func FromError(err error) *Error {
 	if err == nil {
 		return nil
@@ -149,7 +148,7 @@ func FromError(err error) *Error {
 	return Parse(err.Error())
 }
 
-// As finds the first error in err's chain that matches *Error
+// As 查找 err链中与 *Error 匹配的第一个错误
 func As(err error) (*Error, bool) {
 	if err == nil {
 		return nil, false

@@ -1,4 +1,4 @@
-// Package metadata is a way of defining message headers
+// metadata 包是定义消息头的一种方式
 package metadata
 
 import (
@@ -8,9 +8,8 @@ import (
 
 type metadataKey struct{}
 
-// Metadata is our way of representing request headers internally.
-// They're used at the RPC level and translate back and forth
-// from Transport headers.
+// Metadata 是我们内部表示请求头的方式
+// 它们在 RPC 级别使用，并从传输头来回转换
 type Metadata map[string]string
 
 func (md Metadata) Get(key string) (string, bool) {
