@@ -1,24 +1,24 @@
-// Package log provides a log interface
+// log 包提供了一个 log 接口
 package logger
 
 var (
-	// Default logger
+	// 默认 logger
 	DefaultLogger Logger = NewLogger()
 )
 
-// Logger is a generic logging interface
+// Logge 是一个 logging 接口
 type Logger interface {
-	// Init initialises options
+	// Init 初始化选项
 	Init(options ...Option) error
-	// The Logger options
+	// 获取选项
 	Options() Options
-	// Fields set fields to always be logged
+	// Fields 设置总是被记录的字段
 	Fields(fields map[string]interface{}) Logger
-	// Log writes a log entry
+	// Log 写一个日志条目
 	Log(level Level, v ...interface{})
 	// Logf writes a formatted log entry
 	Logf(level Level, format string, v ...interface{})
-	// String returns the name of logger
+	// String 返回 logger 的实现名
 	String() string
 }
 

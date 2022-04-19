@@ -8,11 +8,11 @@ import (
 type Option func(*Options)
 
 type Options struct {
-	// The logging level the logger should log at. default is `InfoLevel`
+	// 日志级别。默认 `InfoLevel`
 	Level Level
-	// fields to always be logged
+	// 总是被记录的字段
 	Fields map[string]interface{}
-	// It's common to set this to a file, or leave it default which is `os.Stderr`
+	// 通常将其设置为一个文件，或保留默认值即 `os.Stderr`
 	Out io.Writer
 	// Caller skip frame count for file:line info
 	CallerSkipCount int

@@ -19,7 +19,7 @@ func ExampleWithOutput() {
 func ExampleWithLogger() {
 	l:= logrus.New() // *logrus.Logger
 	logger.DefaultLogger = NewLogger(WithLogger(l))
-  logger.Infof(logger.InfoLevel, "testing: %s", "Infof")
+    logger.Infof(logger.InfoLevel, "testing: %s", "Infof")
 }
 ```
 
