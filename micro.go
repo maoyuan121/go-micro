@@ -1,4 +1,4 @@
-// Package micro is a pluggable framework for microservices
+// micro 包是微服务的可插拔框架
 package micro
 
 import (
@@ -10,41 +10,40 @@ import (
 
 type serviceKey struct{}
 
-// Service is an interface that wraps the lower level libraries
-// within go-micro. Its a convenience method for building
-// and initialising services.
+// Service 是一个接口，它将底层库封装在 go-micro 中。
+// 这是一种构建和初始化服务的方便方法。
 type Service interface {
-	// The service name
+	// 服务名
 	Name() string
-	// Init initialises options
+	// Init 初始化选项
 	Init(...Option)
-	// Options returns the current options
+	// Options 返回选项
 	Options() Options
-	// Client is used to call services
+	// Client 用来调用服务
 	Client() client.Client
-	// Server is for handling requests and events
+	// Server 用来处理请求和事件
 	Server() server.Server
-	// Run the service
+	// 运行服务
 	Run() error
-	// The service implementation
+	// 服务实现名
 	String() string
 }
 
-// Function is a one time executing Service
+// Function 是一个一次性执行的服务
 type Function interface {
-	// Inherits Service interface
+	// 继承自 service 接口
 	Service
-	// Done signals to complete execution
+	// Done 完成执行的信号
 	Done() error
-	// Handle registers an RPC handler
+	// Handle 注册一个 RPC 处理程序
 	Handle(v interface{}) error
-	// Subscribe registers a subscriber
+	// Subscribe 注册一个订阅者
 	Subscribe(topic string, v interface{}) error
 }
 
-// Event is used to publish messages to a topic
+// Event 用来发布消息到一个 topic
 type Event interface {
-	// Publish publishes a message to the event topic
+	// Publish 发布消息到一个 event topic
 	Publish(ctx context.Context, msg interface{}, opts ...client.PublishOption) error
 }
 
@@ -58,13 +57,13 @@ func NewService(opts ...Option) Service {
 	return newService(opts...)
 }
 
-// FromContext retrieves a Service from the Context.
+// FromContext 从 Context 中获取一个 Service
 func FromContext(ctx context.Context) (Service, bool) {
 	s, ok := ctx.Value(serviceKey{}).(Service)
 	return s, ok
 }
 
-// NewContext returns a new Context with the Service embedded within it.
+// NewContext 返回一个新的 Context，其中嵌入了 Service
 func NewContext(ctx context.Context, s Service) context.Context {
 	return context.WithValue(ctx, serviceKey{}, s)
 }
@@ -74,7 +73,7 @@ func NewFunction(opts ...Option) Function {
 	return newFunction(opts...)
 }
 
-// NewEvent creates a new event publisher
+// NewEvent 创建一个新的 event publisher
 func NewEvent(topic string, c client.Client) Event {
 	if c == nil {
 		c = client.NewClient()
@@ -87,12 +86,12 @@ func NewPublisher(topic string, c client.Client) Event {
 	return NewEvent(topic, c)
 }
 
-// RegisterHandler is syntactic sugar for registering a handler
+// RegisterHandler 是注册一个 handler 的语法糖
 func RegisterHandler(s server.Server, h interface{}, opts ...server.HandlerOption) error {
 	return s.Handle(s.NewHandler(h, opts...))
 }
 
-// RegisterSubscriber is syntactic sugar for registering a subscriber
+// RegisterSubscriber 是注册一个 subscriber 的语法糖
 func RegisterSubscriber(topic string, s server.Server, h interface{}, opts ...server.SubscriberOption) error {
 	return s.Subscribe(s.NewSubscriber(topic, h, opts...))
 }

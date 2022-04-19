@@ -11,7 +11,7 @@ var (
 	ErrWatcherStopped = errors.New("watcher stopped")
 )
 
-// Source is the source from which config is loaded
+// Source 是加载配置的源
 type Source interface {
 	Read() (*ChangeSet, error)
 	Write(*ChangeSet) error
@@ -19,7 +19,7 @@ type Source interface {
 	String() string
 }
 
-// ChangeSet represents a set of changes from a source
+// ChangeSet 表示源的修改集
 type ChangeSet struct {
 	Data      []byte
 	Checksum  string
@@ -28,7 +28,7 @@ type ChangeSet struct {
 	Timestamp time.Time
 }
 
-// Watcher watches a source for changes
+// Watcher 监视源的更改
 type Watcher interface {
 	Next() (*ChangeSet, error)
 	Stop() error

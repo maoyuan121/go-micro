@@ -1,13 +1,13 @@
 // Package transport is an interface for synchronous connection based communication
+// transport 包是一个基于通信的同步连接接口
 package transport
 
 import (
 	"time"
 )
 
-// Transport is an interface which is used for communication between
-// services. It uses connection based socket send/recv semantics and
-// has various implementations; http, grpc, quic.
+// Transport 是用于服务之间通信的接口。
+// 它使用了基于 socket 的连接 send/recv语义，并有各种实现; http、grpc quic。
 type Transport interface {
 	Init(...Option) error
 	Options() Options
@@ -25,8 +25,8 @@ type Socket interface {
 	Recv(*Message) error
 	Send(*Message) error
 	Close() error
-	Local() string
-	Remote() string
+	Local() string  // 本地 ip
+	Remote() string // 远程 ip
 }
 
 type Client interface {

@@ -1,4 +1,4 @@
-// Package server is an interface for a micro server
+// server 包是 micro server 的接口
 package server
 
 import (
@@ -14,39 +14,39 @@ import (
 	signalutil "go-micro.dev/v4/util/signal"
 )
 
-// Server is a simple micro server abstraction
+// Server 是一个简单的 micro server 抽象
 type Server interface {
-	// Initialise options
+	// 初始化选项
 	Init(...Option) error
-	// Retrieve the options
+	// 获取选项
 	Options() Options
-	// Register a handler
+	// 注册一个 handler
 	Handle(Handler) error
-	// Create a new handler
+	// 创建一个新的 handler
 	NewHandler(interface{}, ...HandlerOption) Handler
-	// Create a new subscriber
+	// 创建一个新的  subscriber
 	NewSubscriber(string, interface{}, ...SubscriberOption) Subscriber
-	// Register a subscriber
+	// 注册一个 subscriber
 	Subscribe(Subscriber) error
-	// Start the server
+	// 启动 server
 	Start() error
-	// Stop the server
+	// 停止 server
 	Stop() error
-	// Server implementation
+	// 返回 Server 实现名
 	String() string
 }
 
-// Router handle serving messages
+// Router 处理服务消息
 type Router interface {
-	// ProcessMessage processes a message
+	// ProcessMessage 处理一条消息
 	ProcessMessage(context.Context, Message) error
-	// ServeRequest processes a request to completion
+	// ServeRequest 处理请求以完成
 	ServeRequest(context.Context, Request, Response) error
 }
 
-// Message is an async message interface
+// Message 是异步消息接口
 type Message interface {
-	// Topic of the message
+	// 消息的 topic
 	Topic() string
 	// The decoded payload value
 	Payload() interface{}
@@ -60,13 +60,13 @@ type Message interface {
 	Codec() codec.Reader
 }
 
-// Request is a synchronous request interface
+// Request 是同步请求接口
 type Request interface {
-	// Service name requested
+	// 请求的服务名
 	Service() string
-	// The action requested
+	// 请求的  action
 	Method() string
-	// Endpoint name requested
+	// 请求的 Endpoint name
 	Endpoint() string
 	// Content type provided
 	ContentType() string

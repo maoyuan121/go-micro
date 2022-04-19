@@ -1,4 +1,4 @@
-// Package config is an interface for dynamic configuration.
+// config 包是一个动态配置接口
 package config
 
 import (
@@ -10,25 +10,25 @@ import (
 	"go-micro.dev/v4/config/source/file"
 )
 
-// Config is an interface abstraction for dynamic configuration
+// Config 是动态配置接口
 type Config interface {
-	// provide the reader.Values interface
+	// 提供 reader.Values 接口
 	reader.Values
-	// Init the config
+	// 初始配置
 	Init(opts ...Option) error
-	// Options in the config
+	// 配置的选项
 	Options() Options
-	// Stop the config loader/watcher
+	// 停止 config 的 loader/watcher
 	Close() error
-	// Load config sources
+	// 加载配置源
 	Load(source ...source.Source) error
-	// Force a source changeset sync
+	// 强制同步源更改集
 	Sync() error
-	// Watch a value for changes
+	// 监视值的变化
 	Watch(path ...string) (Watcher, error)
 }
 
-// Watcher is the config watcher
+// Watcher 是配置的监视器 is the config watcher
 type Watcher interface {
 	Next() (reader.Value, error)
 	Stop() error
@@ -50,17 +50,17 @@ var (
 	DefaultConfig, _ = NewConfig()
 )
 
-// NewConfig returns new config
+// NewConfig 返回一个新的 config
 func NewConfig(opts ...Option) (Config, error) {
 	return newConfig(opts...)
 }
 
-// Return config as raw json
+// config 作为 byte 返回
 func Bytes() []byte {
 	return DefaultConfig.Bytes()
 }
 
-// Return config as a map
+// config 作为 map 返回
 func Map() map[string]interface{} {
 	return DefaultConfig.Map()
 }
@@ -75,12 +75,12 @@ func Sync() error {
 	return DefaultConfig.Sync()
 }
 
-// Get a value from the config
+// 从配置中获取一个值
 func Get(path ...string) reader.Value {
 	return DefaultConfig.Get(path...)
 }
 
-// Load config sources
+// 加载配置源
 func Load(source ...source.Source) error {
 	return DefaultConfig.Load(source...)
 }
@@ -90,7 +90,7 @@ func Watch(path ...string) (Watcher, error) {
 	return DefaultConfig.Watch(path...)
 }
 
-// LoadFile is short hand for creating a file source and loading it
+// LoadFile 是创建文件源并加载它的简写
 func LoadFile(path string) error {
 	return Load(file.NewSource(
 		file.WithPath(path),

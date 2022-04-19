@@ -1,4 +1,4 @@
-// package loader manages loading from multiple sources
+// loader 包管理从多个源加载
 package loader
 
 import (
@@ -10,35 +10,34 @@ import (
 
 // Loader manages loading sources
 type Loader interface {
-	// Stop the loader
+	// 关闭加载器
 	Close() error
-	// Load the sources
+	// 从源中加载
 	Load(...source.Source) error
-	// A Snapshot of loaded config
+	// 加载配置的快照
 	Snapshot() (*Snapshot, error)
-	// Force sync of sources
+	// 强制同步源
 	Sync() error
-	// Watch for changes
+	// 监控修改
 	Watch(...string) (Watcher, error)
-	// Name of loader
+	// 加载器名
 	String() string
 }
 
-// Watcher lets you watch sources and returns a merged ChangeSet
+// 监视器允许您监视源并返回合并的变更集
 type Watcher interface {
-	// First call to next may return the current Snapshot
-	// If you are watching a path then only the data from
-	// that path is returned.
+	// 对 next 的第一个调用可以返回当前的 Snapshot
+	// 如果您正在监视一个路径，那么只返回来自该路径的数据。
 	Next() (*Snapshot, error)
-	// Stop watching for changes
+	// 停止监控修改
 	Stop() error
 }
 
-// Snapshot is a merged ChangeSet
+// Snapshot 是一个合并的修改集
 type Snapshot struct {
-	// The merged ChangeSet
+	// 合并的修改集
 	ChangeSet *source.ChangeSet
-	// Deterministic and comparable version of the snapshot
+	// 快照的确定性和可比版本
 	Version string
 }
 

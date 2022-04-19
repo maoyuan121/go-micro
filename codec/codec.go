@@ -19,14 +19,13 @@ var (
 
 type MessageType int
 
-// Takes in a connection/buffer and returns a new Codec
+// 接受一个 connection/buffer 返回一个新的  Codec
 type NewCodec func(io.ReadWriteCloser) Codec
 
-// Codec encodes/decodes various types of messages used within go-micro.
-// ReadHeader and ReadBody are called in pairs to read requests/responses
-// from the connection. Close is called when finished with the
-// connection. ReadBody may be called with a nil argument to force the
-// body to be read and discarded.
+// Codec encode/decode 在 go-micro 里面使用的各种消息
+// ReadHeader and ReadBody are called in pairs to read requests/responses from the connection.
+// Close is called when finished with the  connection.
+// ReadBody may be called with a nil argument to force the body to be read and discarded.
 type Codec interface {
 	Reader
 	Writer
@@ -43,7 +42,7 @@ type Writer interface {
 	Write(*Message, interface{}) error
 }
 
-// Marshaler is a simple encoding interface used for the broker/transport
+// Marshaler 是 broker/transport 用的简单的 encoding 接口
 // where headers are not supported by the underlying implementation.
 type Marshaler interface {
 	Marshal(interface{}) ([]byte, error)
@@ -51,9 +50,7 @@ type Marshaler interface {
 	String() string
 }
 
-// Message represents detailed information about
-// the communication, likely followed by the body.
-// In the case of an error, body may be nil.
+// Message 是通信的信息细节，如 body, 在发生错误的情况下，body 为 nil。
 type Message struct {
 	Id       string
 	Type     MessageType

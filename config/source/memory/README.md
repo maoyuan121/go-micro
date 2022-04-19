@@ -1,10 +1,10 @@
 # Memory Source
 
-The memory source provides in-memory data as a source
+memory source 提供内存中的数据作为源
 
 ## Memory Format
 
-The expected data format is json
+预期的数据格式是 json
 
 ```json
 data := []byte(`{

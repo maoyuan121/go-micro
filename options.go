@@ -21,7 +21,7 @@ import (
 	"go-micro.dev/v4/transport"
 )
 
-// Options for micro service
+// micro service 的配置
 type Options struct {
 	Auth      auth.Auth
 	Broker    broker.Broker
@@ -306,28 +306,28 @@ func WrapSubscriber(w ...server.SubscriberWrapper) Option {
 
 // Before and Afters
 
-// BeforeStart run funcs before service starts
+// BeforeStart 在服务启动前运行 funcs
 func BeforeStart(fn func() error) Option {
 	return func(o *Options) {
 		o.BeforeStart = append(o.BeforeStart, fn)
 	}
 }
 
-// BeforeStop run funcs before service stops
+// BeforeStop 服务停止前运行 funcs
 func BeforeStop(fn func() error) Option {
 	return func(o *Options) {
 		o.BeforeStop = append(o.BeforeStop, fn)
 	}
 }
 
-// AfterStart run funcs after service starts
+// AfterStart 服务启动后运行  funcs
 func AfterStart(fn func() error) Option {
 	return func(o *Options) {
 		o.AfterStart = append(o.AfterStart, fn)
 	}
 }
 
-// AfterStop run funcs after service stops
+// AfterStop 服务停止后运行 funcs
 func AfterStop(fn func() error) Option {
 	return func(o *Options) {
 		o.AfterStop = append(o.AfterStop, fn)
