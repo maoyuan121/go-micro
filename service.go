@@ -30,14 +30,14 @@ func newService(opts ...Option) Service {
 	service := new(service)
 	options := newOptions(opts...)
 
-	// service name
+	// 服务miservice name
 	serviceName := options.Server.Options().Name
 
-	// wrap client to inject From-Service header on any calls
+	// 包装 client，注入 From-Service header 到每次调用
 	options.Client = wrapper.FromService(serviceName, options.Client)
 	options.Client = wrapper.TraceCall(serviceName, trace.DefaultTracer, options.Client)
 
-	// wrap the server to provide handler stats
+	// 包装 server，提供 handler 统计
 	err := options.Server.Init(
 		server.WrapHandler(wrapper.HandlerStats(stats.DefaultStats)),
 		server.WrapHandler(wrapper.TraceHandler(trace.DefaultTracer)),
@@ -52,6 +52,7 @@ func newService(opts ...Option) Service {
 	return service
 }
 
+// 返回服务名
 func (s *service) Name() string {
 	return s.opts.Server.Options().Name
 }
@@ -66,19 +67,19 @@ func (s *service) Init(opts ...Option) {
 	}
 
 	s.once.Do(func() {
-		// setup the plugins
+		// 安装插件
 		for _, p := range strings.Split(os.Getenv("MICRO_PLUGIN"), ",") {
 			if len(p) == 0 {
 				continue
 			}
 
-			// load the plugin
+			// 加载插件
 			c, err := plugin.Load(p)
 			if err != nil {
 				logger.Fatal(err)
 			}
 
-			// initialise the plugin
+			// 初始化插件
 			if err := plugin.Init(c); err != nil {
 				logger.Fatal(err)
 			}
@@ -105,7 +106,7 @@ func (s *service) Init(opts ...Option) {
 			logger.Fatal(err)
 		}
 
-		// Explicitly set the table name to the service name
+		// 用服务名设置表名
 		name := s.opts.Cmd.App().Name
 		err := s.opts.Store.Init(store.Table(name))
 		if err != nil {
