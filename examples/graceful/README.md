@@ -1,6 +1,6 @@
 # Graceful
 
-Graceful demonstrates graceful shutdown of a service using the server.Wait option
+Gracefull 显示了使用 server.Wait option 来优雅的关闭一个服务。
 
-The server deregisters the service and waits for handlers to finish executing before exiting.
+会在退出前等待 handler 完成请求。
 

@@ -2,13 +2,14 @@ package main
 
 import (
 	"fmt"
+	"go-micro.dev/v4/cmd/protoc-gen-micro/plugin/micro"
 	"os"
 
 	"context"
 
 	proto "github.com/asim/go-micro/examples/v4/service/proto"
-	"go-micro.dev/v4"
 	"github.com/urfave/cli/v2"
+	"go-micro.dev/v4"
 )
 
 /*
@@ -49,9 +50,9 @@ func main() {
 			"type": "helloworld",
 		}),
 
-		// Setup some flags. Specify --run_client to run the client
+		// 设置些 flags。 --run_client 运行 client
 
-		// Add runtime flags
+		// 添加 runtime flags
 		// We could do this below too
 		micro.Flags(&cli.BoolFlag{
 			Name:  "run_client",
@@ -59,9 +60,9 @@ func main() {
 		}),
 	)
 
-	// Init will parse the command line flags. Any flags set will
-	// override the above settings. Options defined here will
-	// override anything set on the command line.
+	// Init 将解析命令行 flags。
+	// 任何  flag 将覆盖上面的设置。
+	// 这里定义的选项将覆盖命令行上设置的任何选项。
 	service.Init(
 		// Add runtime action
 		// We could actually do this above

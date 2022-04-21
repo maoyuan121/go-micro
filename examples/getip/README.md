@@ -1,4 +1,3 @@
 # Get IP
 
-The GetIP example demonstrates how to get local and remote ips from metadata.
-
+GetIP 这个例子演示了如何从 metadata 中获取本地和远程 IP。

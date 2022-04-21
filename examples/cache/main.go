@@ -3,6 +3,7 @@ package main
 import (
 	"github.com/asim/go-micro/examples/v4/cache/handler"
 	pb "github.com/asim/go-micro/examples/v4/cache/proto"
+	"go-micro.dev/v4/cmd/protoc-gen-micro/plugin/micro"
 
 	"go-micro.dev/v4"
 	log "go-micro.dev/v4/logger"
@@ -28,4 +29,4 @@ func main() {
 	if err := srv.Run(); err != nil {
 		log.Fatal(err)
 	}
-}
+}a

@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	// load the config from a file source
+	// 从一个文件 source 加载配置
 	if err := config.Load(file.NewSource(
 		file.WithPath("./config.json"),
 	)); err != nil {
@@ -16,7 +16,7 @@ func main() {
 		return
 	}
 
-	// define our own host type
+	// 定义 host 类型
 	type Host struct {
 		Address string `json:"address"`
 		Port    int    `json:"port"`
@@ -24,7 +24,7 @@ func main() {
 
 	var host Host
 
-	// read a database host
+	// 读取一个 database host
 	if err := config.Get("hosts", "database").Scan(&host); err != nil {
 		fmt.Println(err)
 		return

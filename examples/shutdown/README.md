@@ -1,5 +1,5 @@
 # Shutdown
 
-This demonstrates graceful shutdown of a service via context cancellation after 5 seconds
+演示通过 context concellation 优雅的关闭服务
 
-A micro.Service waits on context.Done() or an OS kill signal
+micro.Service 等待  context.Done() 或者 一个 OS kill signal

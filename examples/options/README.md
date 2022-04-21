@@ -1,17 +1,17 @@
 # Options
+ 
+Go-micro 使用 [functional options](https://dave.cheney.net/2014/10/17/functional-options-for-friendly-apis)。
+他是一种设计模式， 允许在不更改方法签名的情况下添加新选项。
 
-Go-micro makes the use of [functional options](https://dave.cheney.net/2014/10/17/functional-options-for-friendly-apis). It's a design 
-pattern that allows the addition of new options without changing the method signature. 
-
-Each package has an [Option](https://godoc.org/github.com/asim/go-micro#Option) type
+每个包都用一个 [Option](https://godoc.org/github.com/asim/go-micro#Option) type
 
 ```
 type Option func(*Options)
 ```
 
-Options such as the [Name](https://godoc.org/github.com/asim/go-micro#Name) function exist to set a service name
+Options 就像 [Name](https://godoc.org/github.com/asim/go-micro#Name) 函数设置服务名
 
-The implementation is as follows
+实现如下
 
 ```
 func Name(n string) Option {

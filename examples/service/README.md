@@ -9,13 +9,13 @@ This is an example of creating a micro service.
 
 ## Run the example
 
-Run the service
+运行服务
 
 ```shell
 go run main.go
 ```
 
-Run the client
+运行 client
 
 ```shell
 go run main.go --run_client
