@@ -3,7 +3,9 @@ syntax = "proto3";
 option go_package = "./proto;stream";
 
 service Streamer {
+	// 双向流
 	rpc Stream(stream Request) returns (stream Response) {}
+	// 服务端流
 	rpc ServerStream(Request) returns (stream Response) {}
 }
 

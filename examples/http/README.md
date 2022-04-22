@@ -1,12 +1,12 @@
 # http server and http client demo
 
-An example http application
+一个 http 应用的例子
 
 ## Contents
 
-- **srv** - a http server as server of go-mirco service
-- **cli** - a http client that call http server
-- **rpcli** - a http client that call rpc server
+- **srv** - 一个作为 go-micro service 的 http server
+- **cli** - 一个 http client 用来调用 http server
+- **rpcli** - 一个 http client 用来调用 rpc server
 
 
 ## Run Service

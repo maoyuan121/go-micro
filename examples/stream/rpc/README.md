@@ -1,40 +1,40 @@
 # Stream
 
-This is an example of a streaming service and two clients, a streaming rpc client and a client using websockets.
+这个例子中有一个 streaming service 和两个 client，其中一个是 streaming rpc client 另外一个是 websocket client。
 
 ## Contents
 
-- server - is the service
-- client - is the rpc client
-- web - is the websocket client
+- server - 是服务
+- client - 是 rpc 客户端
+- web - 是 websocket 客户端
 
-## Run the example
+## 运行例子
 
-Run the service
+运行服务
 
 ```shell
 go run server/main.go
 ```
 
-Run the client
+运行 client
 
 ```shell
 go run client/main.go
 ```
 
-Run the micro web reverse proxy for the websocket client
+为 websocket client 运行 micro web reverse proxy
 
 ``` shell
 micro web
 ```
 
-Run the websocket client
+运行 websocket client
 
 ```shell
 cd web # must be in the web directory to serve static files.
 go run main.go
 ```
 
-Visit http://localhost:8082/stream and send a request!
+访问 http://localhost:8082/stream，发送一个请求！
 
 And that's all there is to it.
