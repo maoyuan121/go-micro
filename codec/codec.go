@@ -1,4 +1,4 @@
-// Package codec is an interface for encoding messages
+// codec 是用来编码消息的接口
 package codec
 
 import (

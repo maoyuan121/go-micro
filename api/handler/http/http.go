@@ -1,4 +1,4 @@
-// Package http is a http reverse proxy handler
+// http 包是一个 http 反向代理 handler
 package http
 
 import (

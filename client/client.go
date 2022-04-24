@@ -1,4 +1,4 @@
-// Package client is an interface for an RPC client
+// client 包提供一个 RPC client 的接口
 package client
 
 import (
@@ -8,9 +8,9 @@ import (
 	"go-micro.dev/v4/codec"
 )
 
-// Client is the interface used to make requests to services.
-// It supports Request/Response via Transport and Publishing via the Broker.
-// It also supports bidirectional streaming of requests.
+// Client 使用来请求 services 的接口
+// 它通过 Transport 支持 Request/Response，通过 Broker 支持 Publishing
+// 它还支持请求双向流
 type Client interface {
 	Init(...Option) error
 	Options() Options
@@ -22,25 +22,25 @@ type Client interface {
 	String() string
 }
 
-// Router manages request routing
+// Router 管理 request routing
 type Router interface {
 	SendRequest(context.Context, Request) (Response, error)
 }
 
-// Message is the interface for publishing asynchronously
+// Message 是一个接口用来异步发布
 type Message interface {
 	Topic() string
 	Payload() interface{}
 	ContentType() string
 }
 
-// Request is the interface for a synchronous request used by Call or Stream
+// Request 是 Call 和 Stream 方法用来同步请求的接口
 type Request interface {
-	// The service to call
+	// 要调用的 service
 	Service() string
 	// The action to take
 	Method() string
-	// The endpoint to invoke
+	// 要 invoke 的 endpoint
 	Endpoint() string
 	// The content type
 	ContentType() string
@@ -52,7 +52,7 @@ type Request interface {
 	Stream() bool
 }
 
-// Response is the response received from a service
+// Response 是从一个 service 接收到的 response
 type Response interface {
 	// Read the response
 	Codec() codec.Reader
@@ -103,22 +103,22 @@ type MessageOption func(*MessageOptions)
 type RequestOption func(*RequestOptions)
 
 var (
-	// DefaultClient is a default client to use out of the box
+	// DefaultClient 是开箱即用的默认的 client
 	DefaultClient Client = newRpcClient()
-	// DefaultBackoff is the default backoff function for retries
+	// DefaultBackoff 是重试的默认 backoff function
 	DefaultBackoff = exponentialBackoff
-	// DefaultRetry is the default check-for-retry function for retries
+	// DefaultRetry 是重试默认的 check-for-retry function
 	DefaultRetry = RetryOnError
-	// DefaultRetries is the default number of times a request is tried
+	// DefaultRetries 是默认的重试次数
 	DefaultRetries = 1
-	// DefaultRequestTimeout is the default request timeout
+	// DefaultRequestTimeout 是默认的请求超时时间
 	DefaultRequestTimeout = time.Second * 5
-	// DefaultPoolSize sets the connection pool size
+	// DefaultPoolSize 是默认的连接池大小
 	DefaultPoolSize = 100
-	// DefaultPoolTTL sets the connection pool ttl
+	// DefaultPoolTTL 是默认的连接池 ttl
 	DefaultPoolTTL = time.Minute
 
-	// NewClient returns a new client
+	// NewClient 返回一个新 client
 	NewClient func(...Option) Client = newRpcClient
 )
 

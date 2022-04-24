@@ -1,4 +1,4 @@
-// Package api provides an http-rpc handler which provides the entire http request over rpc
+// api 包提供了一个 http-rpc 处理程序，它通过 rpc 提供整个 http 请求
 package api
 
 import (
@@ -22,7 +22,7 @@ const (
 	Handler = "api"
 )
 
-// API handler is the default handler which takes api.Request and returns api.Response
+// API handler 是默认的 handler，它接受 api.Request 返回 api.Response
 func (a *apiHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	bsize := handler.DefaultMaxRecvSize
 	if a.opts.MaxRecvSize > 0 {

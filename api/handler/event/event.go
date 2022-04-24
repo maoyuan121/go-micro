@@ -1,4 +1,4 @@
-// Package event provides a handler which publishes an event
+// event 包提供了一个发布事件的处理程序
 package event
 
 import (

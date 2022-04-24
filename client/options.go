@@ -12,7 +12,7 @@ import (
 )
 
 type Options struct {
-	// Used to select codec
+	// 用来选择 codec
 	ContentType string
 
 	// Plugged interfaces
@@ -32,10 +32,10 @@ type Options struct {
 	// Response cache
 	Cache *Cache
 
-	// Middleware for client
+	// client 中间件
 	Wrappers []Wrapper
 
-	// Default Call Options
+	// 默认的  Call Options
 	CallOptions CallOptions
 
 	// Other options for implementations of the interface
@@ -46,7 +46,7 @@ type Options struct {
 type CallOptions struct {
 	SelectOptions []selector.SelectOption
 
-	// Address of remote hosts
+	// 远程 host 的地址
 	Address []string
 	// Backoff func
 	Backoff BackoffFunc
@@ -54,7 +54,7 @@ type CallOptions struct {
 	Retry RetryFunc
 	// Transport Dial Timeout
 	DialTimeout time.Duration
-	// Number of Call attempts
+	// 重试次数
 	Retries int
 	// Request/Response timeout
 	RequestTimeout time.Duration

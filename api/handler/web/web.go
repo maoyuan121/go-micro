@@ -1,4 +1,4 @@
-// Package web contains the web handler including websocket support
+// web 包包含了 wen handler, 支持 websocket
 package web
 
 import (

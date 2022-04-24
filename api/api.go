@@ -26,13 +26,13 @@ type Options struct{}
 
 type Option func(*Options) error
 
-// Endpoint is a mapping between an RPC method and HTTP endpoint
+// Endpoint 是 RPC 方法和 HTTP endpint 之间的映射
 type Endpoint struct {
-	// RPC Method e.g. Greeter.Hello
+	// RPC 方法，e.g. Greeter.Hello
 	Name string
 	// Description e.g what's this endpoint for
 	Description string
-	// API Handler e.g rpc, proxy
+	// API Handler 例如 rpc, proxy
 	Handler string
 	// HTTP Host e.g example.com
 	Host []string
@@ -48,11 +48,11 @@ type Endpoint struct {
 	Stream bool
 }
 
-// Service represents an API service
+// Service 代表一个 API service
 type Service struct {
-	// Name of service
+	// service 名
 	Name string
-	// The endpoint for this service
+	// 这个 service 的 endpoint
 	Endpoint *Endpoint
 	// Versions of this service
 	Services []*registry.Service

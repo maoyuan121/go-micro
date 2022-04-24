@@ -1,4 +1,5 @@
 // Package registry is an interface for service discovery
+// registry 包是一个服务发现的接口
 // 默认注册中心为 mdns
 package registry
 
