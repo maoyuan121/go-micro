@@ -1,10 +1,10 @@
 # Round Robin Wrapper
 
-The round robin wrapper is a stateful client wrapper which gives you a true round robin strategy for the selector
+轮询包装器是一个有状态的客户端包装器，它为选择器提供了一个真正的轮询策略
 
 ## Usage
 
-Pass in the wrapper when you create your service
+当你创建你的 service 的时候传入 wrapper
 
 ```
 wrapper := roundrobin.NewClientWrapper()

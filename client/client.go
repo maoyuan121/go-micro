@@ -62,7 +62,7 @@ type Response interface {
 	Read() ([]byte, error)
 }
 
-// Stream is the inteface for a bidirectional synchronous stream
+// Stream 是一个双向异步流的接口
 type Stream interface {
 	Closer
 	// Context for the stream
@@ -71,13 +71,13 @@ type Stream interface {
 	Request() Request
 	// The response read
 	Response() Response
-	// Send will encode and send a request
+	// Send 将 encode 并发送一个 request
 	Send(interface{}) error
-	// Recv will decode and read a response
+	// Recv 将 decode 并读取一个 response
 	Recv(interface{}) error
-	// Error returns the stream error
+	// Error 返回 stream 错误
 	Error() error
-	// Close closes the stream
+	// Close 关闭 stream
 	Close() error
 }
 
@@ -122,24 +122,24 @@ var (
 	NewClient func(...Option) Client = newRpcClient
 )
 
-// Makes a synchronous call to a service using the default client
+// 使用默认 client 发起一个对 service 的同步请求
 func Call(ctx context.Context, request Request, response interface{}, opts ...CallOption) error {
 	return DefaultClient.Call(ctx, request, response, opts...)
 }
 
-// Publishes a publication using the default client. Using the underlying broker
-// set within the options.
+// 使用默认 client 发布一个 publication。
+// 在 options 里面设置了底层的 broker。
 func Publish(ctx context.Context, msg Message, opts ...PublishOption) error {
 	return DefaultClient.Publish(ctx, msg, opts...)
 }
 
-// Creates a new message using the default client
+// 使用默认 client 创建一个 message
 func NewMessage(topic string, payload interface{}, opts ...MessageOption) Message {
 	return DefaultClient.NewMessage(topic, payload, opts...)
 }
 
-// Creates a new request using the default client. Content Type will
-// be set to the default within options and use the appropriate codec
+// 使用默认 client 创建一个 request。
+// ContentType 在 options 里面设置，并会使用适当的  codec。
 func NewRequest(service, endpoint string, request interface{}, reqOpts ...RequestOption) Request {
 	return DefaultClient.NewRequest(service, endpoint, request, reqOpts...)
 }

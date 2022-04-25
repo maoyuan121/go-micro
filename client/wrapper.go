@@ -6,14 +6,14 @@ import (
 	"go-micro.dev/v4/registry"
 )
 
-// CallFunc represents the individual call func
+// CallFunc 表示一个 call func
 type CallFunc func(ctx context.Context, node *registry.Node, req Request, rsp interface{}, opts CallOptions) error
 
-// CallWrapper is a low level wrapper for the CallFunc
+// CallWrapper 是 CallFunc 的一个底层的包装器
 type CallWrapper func(CallFunc) CallFunc
 
-// Wrapper wraps a client and returns a client
+// Wrapper 包装一个 client 返回一个 client
 type Wrapper func(Client) Client
 
-// StreamWrapper wraps a Stream and returns the equivalent
+// StreamWrapper 包装一个 Stream 返回一个 Stream
 type StreamWrapper func(Stream) Stream

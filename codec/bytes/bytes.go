@@ -1,4 +1,4 @@
-// Package bytes provides a bytes codec which does not encode or decode anything
+// Package bytes 提供不编码或解码任何内容的字节编解码器
 package bytes
 
 import (

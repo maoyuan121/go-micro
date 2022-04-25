@@ -1,35 +1,35 @@
 # Wrappers
 
-Wrappers are a form of middleware that can be used with go-micro services. They can wrap both 
-the Client and Server handlers.
+Wrappers 是中间件的一种形式，用来和 go-micro services 使用。
+可以包装 client 和 server handler。
 
 ## Client Interface
 
 ```go
-// Wrapper wraps a client and returns a client
+// Wrapper 包装一个 client 返回一个 client
 type Wrapper func(Client) Client
 
-// StreamWrapper wraps a Stream and returns the equivalent
+// StreamWrapper 包装一个 Streamer 返回一个 Streamer
 type StreamWrapper func(Streamer) Streamer
 ```
 
 ## Handler Interface
 
 ```go
-// HandlerFunc represents a single method of a handler. It's used primarily
-// for the wrappers. What's handed to the actual method is the concrete
-// request and response types.
+// HandlerFunc 表示一个 handler 的一个方法。 
+// 主要用来包装。
+// 传递给实际方法的是具体的请求和响应类型。
 type HandlerFunc func(ctx context.Context, req Request, rsp interface{}) error
 
-// SubscriberFunc represents a single method of a subscriber. It's used primarily
-// for the wrappers. What's handed to the actual method is the concrete
-// publication message.
+// SubscriberFunc 表示一个 subscriber 的一个方法。 
+// 主要用来包装。 
+// What's handed to the actual method is the concrete publication message.
 type SubscriberFunc func(ctx context.Context, msg Event) error
 
-// HandlerWrapper wraps the HandlerFunc and returns the equivalent
+// HandlerWrapper 包装一个 HandlerFunc 返回一个 HandlerFunc
 type HandlerWrapper func(HandlerFunc) HandlerFunc
 
-// SubscriberWrapper wraps the SubscriberFunc and returns the equivalent
+// SubscriberWrapper 包装要给 SubscriberFunc 返回一个 SubscriberFunc
 type SubscriberWrapper func(SubscriberFunc) SubscriberFunc
 
 // StreamerWrapper wraps a Streamer interface and returns the equivalent.
@@ -41,7 +41,7 @@ type StreamerWrapper func(Streamer) Streamer
 
 ## Client Wrapper Usage
 
-Here's a basic log wrapper for the client
+下面是一个 client 的基本的 log wrapper
 
 ```go
 type logWrapper struct {
@@ -62,7 +62,7 @@ func NewLogWrapper(c client.Client) client.Client {
 
 ## Handler Wrapper Usage
 
-Here's a basic log wrapper for the handler
+下面是一个 handler 的基本的 log wrapper
 
 ```go
 func NewLogWrapper(fn server.HandlerFunc) server.HandlerFunc {

@@ -12,9 +12,9 @@ var (
 
 // Sync 是分布式同步的接口
 type Sync interface {
-	// Initialise options
+	// 初始化 options
 	Init(...Option) error
-	// Return the options
+	// 返回 options
 	Options() Options
 	// 选 leader
 	Leader(id string, opts ...LeaderOption) (Leader, error)
@@ -28,7 +28,7 @@ type Sync interface {
 
 // Leader provides leadership election
 type Leader interface {
-	// resign leadership
+	// 辞职
 	Resign() error
 	// status returns when leadership is lost
 	Status() chan bool
